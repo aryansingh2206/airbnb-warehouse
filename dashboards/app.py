@@ -10,7 +10,7 @@ st.write("Analytics automatically adapted to your city's dataset 🚀")
 # -------------------------------------------
 # 1. Show high-level metrics
 # -------------------------------------------
-st.header("📊 Quick Overview")
+st.header("Quick Overview")
 
 metrics = con.execute("""
 SELECT 
@@ -30,7 +30,7 @@ col4.metric("Max Price", f"${metrics['max_price']:.0f}")
 # -------------------------------------------
 # 2. Neighborhood-level pricing (fallback for cities with valid names)
 # -------------------------------------------
-st.header("🏘️ Top Neighborhoods by Avg Price")
+st.header("Top Neighborhoods by Avg Price")
 
 df_neigh = con.execute("""
 SELECT d.neighbourhood,
@@ -52,7 +52,7 @@ else:
 # -------------------------------------------
 # 3. Hotspot Areas (always works)
 # -------------------------------------------
-st.header("🔥 Price Hotspots (lat/lon buckets)")
+st.header("Price Hotspots (lat/lon buckets)")
 
 df_hotspot = con.execute("""
 SELECT 
@@ -85,7 +85,7 @@ st.bar_chart(df_room.set_index("room_type")["avg_price"])
 # -------------------------------------------
 # 5. Price distribution
 # -------------------------------------------
-st.header("📈 Price Distribution")
+st.header("Price Distribution")
 
 df_dist = con.execute("SELECT price FROM fact_listing;").df()
 st.caption("Showing price histogram for all listings")
@@ -95,7 +95,7 @@ st.caption("Showing price histogram for all listings")
 # -------------------------------------------
 import matplotlib.pyplot as plt
 
-st.header("📈 Price Distribution")
+st.header("Price Distribution")
 
 df_dist = con.execute("SELECT price FROM fact_listing WHERE price IS NOT NULL;").df()
 
