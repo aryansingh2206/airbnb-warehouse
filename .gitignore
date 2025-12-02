@@ -1,0 +1,62 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# -------------------------
+# DuckDB database
+# -------------------------
+warehouse.db
+warehouse.db.wal
+warehouse.db.tmp
+
+# -------------------------
+# Data files
+# -------------------------
+data/raw/
+data/staged/
+data/outputs/
+
+# Allow sample data file if needed:
+# !data/raw/sample_listings.csv
+
+# -------------------------
+# Parquet files
+# -------------------------
+*.parquet
+
+# -------------------------
+# Streamlit cache
+# -------------------------
+.streamlit/
+.streamlit/cache/
+.streamlit/static/
+
+# -------------------------
+# VS Code
+# -------------------------
+.vscode/
+*.code-workspace
+
+# -------------------------
+# OS-specific crap
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Jupyter notebooks checkpoints
+# -------------------------
+.ipynb_checkpoints/
