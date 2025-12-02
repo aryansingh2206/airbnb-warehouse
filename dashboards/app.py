@@ -5,7 +5,7 @@ import duckdb
 con = duckdb.connect("warehouse.db", read_only=True)
 
 st.title("Mini Airbnb Analytics Warehouse")
-st.write("Analytics automatically adapted to your city's dataset 🚀")
+st.write("Analytics automatically adapted to your city's dataset ")
 
 # -------------------------------------------
 # 1. Show high-level metrics
@@ -71,7 +71,7 @@ st.dataframe(df_hotspot)
 # -------------------------------------------
 # 4. Room type comparison
 # -------------------------------------------
-st.header("🛏️ Avg Price by Room Type")
+st.header(" Avg Price by Room Type")
 
 df_room = con.execute("""
 SELECT room_type, COUNT(*) AS listings, AVG(price) AS avg_price
