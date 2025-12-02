@@ -103,6 +103,4 @@ streamlit run dashboards/app.py
 * Neighborhood-level patterns (if available)
 
 ---
-\
-Just tell me what you want!
-```
+
