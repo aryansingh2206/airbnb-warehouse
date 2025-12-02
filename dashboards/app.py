@@ -2,18 +2,18 @@ import streamlit as st
 import duckdb
 import pandas as pd
 
-st.title("Mini Airbnb Analytics Warehouse (Cloud Build)")
+st.title("Mini Airbnb Analytics Warehouse")
 
 # -------------------------------------------
 # LOAD RAW CSV FROM REPO
 # -------------------------------------------
-st.write("⏳ Loading dataset...")
+
 df_raw = pd.read_csv("data/raw/listings.csv")
 
 # -------------------------------------------
 # CLEAN DATA
 # -------------------------------------------
-st.write("⏳ Cleaning dataset...")
+
 
 def clean(df):
     df = df.copy()
@@ -47,12 +47,12 @@ def clean(df):
 
 df_clean = clean(df_raw)
 
-st.success("Dataset cleaned!")
+
 
 # -------------------------------------------
 # CREATE IN-MEMORY DUCKDB WAREHOUSE
 # -------------------------------------------
-st.write("🔨 Building DuckDB warehouse in memory...")
+
 
 con = duckdb.connect(database=":memory:")
 
@@ -107,12 +107,12 @@ LEFT JOIN dim_host h
     ON l.host_id = h.host_id;
 """)
 
-st.success("Warehouse built in-memory! 🚀")
+
 
 # ---------------------------------------------------
 # DASHBOARD METRICS
 # ---------------------------------------------------
-st.header("📊 Dataset Overview")
+st.header(" Dataset Overview")
 
 metrics = con.execute("""
 SELECT 
@@ -132,7 +132,7 @@ col4.metric("Max Price", f"${metrics['max_price']:.0f}")
 # ---------------------------------------------------
 # Hotspot Areas
 # ---------------------------------------------------
-st.header("🔥 Price Hotspots")
+st.header(" Price Hotspots")
 
 df_hotspot = con.execute("""
 SELECT 
@@ -151,7 +151,7 @@ st.dataframe(df_hotspot)
 # ---------------------------------------------------
 # Room Type Chart
 # ---------------------------------------------------
-st.header("🛏️ Avg Price by Room Type")
+st.header(" Avg Price by Room Type")
 
 df_room = con.execute("""
 SELECT room_type, AVG(price) AS avg_price
@@ -167,7 +167,7 @@ st.bar_chart(df_room.set_index("room_type")["avg_price"])
 # ---------------------------------------------------
 import matplotlib.pyplot as plt
 
-st.header("📈 Price Distribution")
+st.header(" Price Distribution")
 
 df_dist = con.execute("SELECT price FROM fact_listing WHERE price IS NOT NULL;").fetchdf()
 
